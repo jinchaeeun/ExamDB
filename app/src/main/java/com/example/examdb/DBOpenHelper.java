@@ -15,7 +15,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     //테이블 생성. 공백 잘 지키기
     private static final String CREATE_TABLE_MESSAGE = "create table if not exists " + 
                                                         DBInfo.TABLE_MESSAGE + 
-                                                        "(" + DBInfo.KEY_ID + "integer primary key autoincrement, " + 
+                                                        "(" + DBInfo.KEY_ID + " integer primary key autoincrement, " +
                                                         DBInfo.KEY_TITLE + " text not null, " +
                                                         DBInfo.KEY_CONTENT + " text not null );";
     //테이블 삭제
