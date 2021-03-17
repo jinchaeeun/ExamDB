@@ -13,10 +13,12 @@ public class DBInfo {
     public static final String      KEY_ID      = "_id";
     public static final String      KEY_TITLE      = "title";
     public static final String      KEY_CONTENT = "content";
+
     
     //다음처럼 테이블 추가
+    /*
     public static final String      TABLE_USER  = "user_tbl";
     public static final String      KEY_NAME      = "name";
     public static final String      KEY_PHONE      = "phone";
-    
+    */
 }

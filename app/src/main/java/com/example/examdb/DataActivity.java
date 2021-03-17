@@ -2,16 +2,20 @@ package com.example.examdb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -33,6 +37,21 @@ public class DataActivity extends AppCompatActivity {
         init();
         Log.i(TAG, " => DataActivity : onCreate()");
         Intent intent = getIntent();
+        
+        //리스트뷰 아이템 클릭 시 삭제
+        dataLST.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(TAG, " => DataActivity : onItemClick() id : "+ id + " | position : "+ position);
+                // (1) DB에서 데이터 삭제
+                // position은 그냥 리스트뷰에 나오는 위치 값
+                DBInfo.DB_ADAPTER.deleteRow(DBInfo.TABLE_MESSAGE, id);
+
+                //(2) List 갱신
+                //Cursor cursor = DBInfo.DB_ADAPTER.getAllRow();
+                adapter.changeCursor(DBInfo.DB_ADAPTER.getAllRow()); //커서가 바뀌었다는 것 확인.
+            }
+        });
 
     }
 
@@ -55,5 +74,8 @@ public class DataActivity extends AppCompatActivity {
         dataLST.setAdapter(adapter);
 
     }
+
+    //클릭했을 때 나오는 데이터 인덱스 가지고 삭제
+
 
 }

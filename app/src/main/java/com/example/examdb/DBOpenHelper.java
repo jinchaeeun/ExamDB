@@ -53,8 +53,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         //DB 업그레이드 시에 사용
         //if(newVersion != DBInfo.DB_VERSION) 안해도 자동으로 된다.
 
-            db.execSQL(DROP_TABLE_MESSAGE); //기존 Table 삭제
-            onCreate(db); //db.execSQL(CREATE_TABLE_MESSAGE); // Table 새로 생성
+        db.execSQL(DROP_TABLE_MESSAGE); //기존 Table 삭제
+        onCreate(db); //db.execSQL(CREATE_TABLE_MESSAGE); // Table 새로 생성
         Log.i(TAG, "DBOpenHelper : onUpgrade()");
 
     }

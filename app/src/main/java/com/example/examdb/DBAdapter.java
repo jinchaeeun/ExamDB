@@ -51,6 +51,22 @@ public class DBAdapter {
         return rowId;
     }
 
+    public boolean deleteRow(String tablename, long rowID){
+        openDB(true);
+
+        // delete from message_tbl where_id=
+        int delNums = db.delete(tablename, DBInfo.KEY_ID + "=" + rowID, null);
+        Log.i(TAG, " => DBAdapter : deleteRow() || rowID : " + rowID + "|| delNums : " + delNums);
+
+        //db.execSQL("delete from "+tablename + " where _id = " + rowID + ";" );
+        // String[] pos = newValue;
+        //db.delete(tablename, "_id=?", newValue);
+        //getAllRow();
+
+        closeDB();
+
+        return (delNums >0)? true:false;
+    }
     public Cursor getAllRow() {
         openDB(true);
 
@@ -87,5 +103,7 @@ public class DBAdapter {
             return -1;
         }
     }
+
+    //클릭해서 삭제하기
 
 }
