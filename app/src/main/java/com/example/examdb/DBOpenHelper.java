@@ -41,17 +41,21 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     // Member Method - Override -----------------------------------
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //Constructor에서 db인자
         //db가 생성되었을 때 호출.
-        //Constructor에서 db인자 
-        Log.i(TAG, " => DBOpenHelper : OnCreate()");
-        
         //Table 생성
         db.execSQL(CREATE_TABLE_MESSAGE);
+        Log.i(TAG, " => DBOpenHelper : OnCreate()");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //DB 업그레이드 시에 사용
+        //if(newVersion != DBInfo.DB_VERSION) 안해도 자동으로 된다.
+
+            db.execSQL(DROP_TABLE_MESSAGE); //기존 Table 삭제
+            onCreate(db); //db.execSQL(CREATE_TABLE_MESSAGE); // Table 새로 생성
+        Log.i(TAG, "DBOpenHelper : onUpgrade()");
 
     }
 }
